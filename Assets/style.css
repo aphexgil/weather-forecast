@@ -3,22 +3,35 @@ header{
     padding: 10px 30vw 10px;
     background-image: linear-gradient(to right,#465ab8, #261360);
     color: white;
-    font-size: x-large;
-    font-weight: bolder;
     margin-bottom: 5px;
 }
 
-.city-input-label{
+.main-row{
+    margin-top: 13px;
+    width: 100%;
+}
+
+h1{
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+h2{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+h3{
     font-size: large;
     font-weight: bold;
-    margin-bottom: 2px;
 }
 
 .city-input{
     width: 100%;
     border-radius: 5px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     border-width: 1px;
+    padding: 5px 0px 5px 7px;
 }
 
 .search-button{
@@ -29,4 +42,27 @@ header{
     border-radius: 5px;
     border-style: none;
     font-size: small;
+    padding: 5px 0px;
+    margin-bottom: 10px;
+}
+
+.search-again{
+    width: 100%;
+    background-color: #aeaeae;
+    color: #000000;
+    border-radius: 5px;
+    border-style: none;
+    font-size: small;
+    padding: 5px 0px;
+    margin-top: 10px;
+}
+
+.saved-searches{
+    border-top: 10px;
+}
+
+ul li{
+    margin: 8px 0px;
+    padding-left: 0px;
+    font-size: smaller;
 }
