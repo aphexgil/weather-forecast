@@ -66,3 +66,8 @@ ul li{
     padding-left: 0px;
     font-size: smaller;
 }
+
+.draggable {
+    cursor: move;
+    user-select: none;
+}
