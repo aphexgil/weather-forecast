@@ -195,17 +195,19 @@ function displaySearches(){
         return;
     }
 ;   for(var i=0; i<pastSearches.length; i++){
+
         let cityName = pastSearches[i];
         let btn = $('<div>');
-        btn.text(cityName);
         btn.attr('class', 'search-again draggable');
-        btn.attr('style', 'text-align: center; cursor: pointer;');
+        btn.attr('style', 'cursor: pointer; text-align: center;');
+        btn.text(cityName);
         $(btn).on('click', function (event) {
             event.stopPropogation;
             getWeather(cityName);
         });
+
         $('.saved-searches').append(btn);
-        let x = $('<span/>');
+        let x = $('<span>');
         x.text('x');
         x.attr('style','float: right; margin-right: 11px; cursor: pointer; font-weight: bolder;');
         btn.append(x);
@@ -238,6 +240,9 @@ function displaySearches(){
     let y = 0;
 
     const mouseDownHandler = function (e) {
+        if(e.target.innerText=='x'){
+            return;
+        }
         draggingEle = e.target;
 
         let dragCity = draggingEle.textContent.slice(0,-1);
@@ -255,7 +260,7 @@ function displaySearches(){
     const list = document.getElementById('list');
 
     // Query all items
-    Array.prototype.slice.call(list.querySelectorAll('.draggable')).forEach(function (item) {
+    Array.prototype.slice.call(list.children).forEach(function (item) {
         item.addEventListener('mousedown', mouseDownHandler);
     });
 
