@@ -1,11 +1,17 @@
 header{
     text-align: right;
-    padding: 10px 30vw 10px;
+    padding: 10px 25vw 10px;
     background-image: linear-gradient(to right,#465ab8, #261360);
     color: white;
     margin-bottom: 5px;
 }
 
+footer{
+    height: 200px;
+}
+body{
+    width: 100%;
+}
 .main-row{
     margin-top: 13px;
     width: 100%;
@@ -59,6 +65,7 @@ h3{
 
 .saved-searches{
     border-top: 10px;
+    margin-bottom: 20px;
 }
 
 ul li{
@@ -70,4 +77,10 @@ ul li{
 .draggable {
     cursor: move;
     user-select: none;
+}
+
+@media screen and (max-width: 992px) {
+    .today-box {
+        width: 97%; margin: 10px auto 10px 10px;
+    }
 }

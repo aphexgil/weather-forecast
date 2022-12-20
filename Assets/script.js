@@ -38,7 +38,7 @@ function displayWeather(){
     $('.big-col').remove();
 
     var bigCol = $('<div/>',{
-        class: 'col-9 big-col',
+        class: 'col-12 col-lg-9 big-col',
     });
 
     var topRow = $('<div/>',{
@@ -46,9 +46,9 @@ function displayWeather(){
     });
     
     var todayBox = $('<div/>',{
-        class: 'col-12 border border-dark'
+        class: 'col-12 border border-dark today-box'
     });
-    $(todayBox).attr('style', 'padding: 7px 0px 0px 5px;')
+    $(todayBox).attr('style', 'width: 97%; margin: 10px auto 10px 10px;')
 
     var todayBoxHeadline = $('<h2/>');
 
@@ -89,15 +89,15 @@ function displayWeather(){
     var midRow = $('<div/>',{
         class: 'row'
     });
-    $(midRow).attr('style', 'margin-top: 5px; padding: 0px;');
+    $(midRow).attr('style', 'margin-top: 5px;');
 
     var midCol = $('<div/>',{
         class: 'col-12'
     });
-    $(midCol).attr('style', 'padding: inherit;');
+    //$(midCol).attr('style', 'padding: inherit;');
 
     var midText = $('<h3/>');
-    $(midText).attr('style', 'padding: inherit;');
+    //$(midText).attr('style', 'padding: inherit;');
 
     $(midCol).append(midText);
     $(midRow).append(midCol);
@@ -108,12 +108,14 @@ function displayWeather(){
         class: 'row'
     });
 
+    $(btmRow).attr('style', 'margin: 0px auto;')
+
     var blankDay = 0;
     var offset = 8;
     while(offset<40){
         blankDay++;
         var dayBox = $('<div>', {
-            class: 'col'
+            class: 'col-md col-sm-5'
         });
 
         var dayBoxHeadline = $('<h3/>');
@@ -123,7 +125,7 @@ function displayWeather(){
         thisDate = thisDate.join("/");
         $(dayBoxHeadline).text(thisDate);
         $(dayBox).append(dayBoxHeadline);
-        $(dayBox).attr('style', 'margin: 0px 10px 0px 10px; background: #323d4f; color: white; padding: 5px;');
+        $(dayBox).attr('style', 'margin: 10px; background: #323d4f; color: white; padding: 5px;');
 
         var thisIconURL = "https://openweathermap.org/img/wn/" + weatherInfo.list[offset].weather[0].icon + ".png";
         var dayBoxIcon = $('<img/>');
@@ -244,8 +246,6 @@ function displaySearches(){
             return;
         }
         draggingEle = e.target;
-
-        let dragCity = draggingEle.textContent.slice(0,-1);
         // Calculate the mouse position
         const rect = draggingEle.getBoundingClientRect();
         x = e.pageX - rect.left;
@@ -276,8 +276,7 @@ function displaySearches(){
         draggingEle.style.top = `${e.pageY - y}px`;
         draggingEle.style.left = `${e.pageX - x}px`;
         draggingEle.style.width = `${w}px`;
-        const draggingRect = draggingEle.getBoundingClientRect();
-
+        
         if (!isDraggingStarted) {
             // Update the flag
             isDraggingStarted = true;
