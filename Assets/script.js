@@ -1,7 +1,10 @@
+//openweatherapikey
 const key = '37dc5cb97cecc77ea9e04e3af68fc80b';
 let weatherInfo;
 let pastSearches = JSON.parse(localStorage.getItem("pastSearches"));
 
+
+//takes user submitted city query and uses it to query oepn weather api. saves result into 'weatherInfo' global var.
 async function getWeather(city){
 
     let geoCodingURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + "&appid=" + key;
@@ -32,6 +35,7 @@ async function getWeather(city){
     
 }
 
+//displays current and upcoming weather from weatherInfo.
 function displayWeather(){
 
     $('.spacer').attr('style', 'display:none');
@@ -94,10 +98,9 @@ function displayWeather(){
     var midCol = $('<div/>',{
         class: 'col-12'
     });
-    //$(midCol).attr('style', 'padding: inherit;');
+    
 
     var midText = $('<h3/>');
-    //$(midText).attr('style', 'padding: inherit;');
 
     $(midCol).append(midText);
     $(midRow).append(midCol);
@@ -108,14 +111,14 @@ function displayWeather(){
         class: 'row'
     });
 
-    $(btmRow).attr('style', 'margin: 0px auto;')
+    $(btmRow).attr('style', 'margin: 0px;')
 
     var blankDay = 0;
     var offset = 8;
     while(offset<40){
         blankDay++;
         var dayBox = $('<div>', {
-            class: 'col-md col-sm-5'
+            class: 'col-md'
         });
 
         var dayBoxHeadline = $('<h3/>');
@@ -125,7 +128,7 @@ function displayWeather(){
         thisDate = thisDate.join("/");
         $(dayBoxHeadline).text(thisDate);
         $(dayBox).append(dayBoxHeadline);
-        $(dayBox).attr('style', 'margin: 10px; background: #323d4f; color: white; padding: 5px;');
+        $(dayBox).attr('style', 'margin: 3px; background: #323d4f; color: white; padding: 5px;');
 
         var thisIconURL = "https://openweathermap.org/img/wn/" + weatherInfo.list[offset].weather[0].icon + ".png";
         var dayBoxIcon = $('<img/>');
@@ -160,6 +163,7 @@ function displayWeather(){
     $('.main-row').append(bigCol);
 }
 
+//appends argument 'city' to pastSearches array of strings stored in local storage.
 function saveSearch(city){
     if(pastSearches==null){
         pastSearches = [];
@@ -178,6 +182,7 @@ function saveSearch(city){
     displaySearches();
 }
 
+//removes search x from pastSearches array
 function removeSearch(x){
     let cityName = x.parent().text().slice(0,-1);
     pastSearches = pastSearches.filter( e => e !== cityName);
@@ -189,6 +194,7 @@ function removeSearch(x){
     displaySearches();
 }
 
+//displays buttons beneath searh bar with users previously searched cities
 function displaySearches(){
     $('.saved-searches').empty();
     //$('.clear-btn-wrapper').empty();
@@ -209,6 +215,8 @@ function displaySearches(){
         });
 
         $('.saved-searches').append(btn);
+
+        //adds x to right side of each button. clicking it called 'removeSearch' on that button.
         let x = $('<span>');
         x.text('x');
         x.attr('style','float: right; margin-right: 11px; cursor: pointer; font-weight: bolder;');
@@ -218,18 +226,9 @@ function displaySearches(){
             removeSearch(x);
         });
     }
-    // var clearBtn = $('<button/>',
-    // {
-    //     text: 'Clear',
-    //     class: 'search-again clear-btn'
-    // });
-    // $(clearBtn).on('click', function() {
-    //     localStorage.setItem("pastSearches", null);
-    //     pastSearches = null;
-    //     displaySearches();
-    // });
-    // $('.clear-btn-wrapper').append(clearBtn, '<br>');
 
+
+    //Copied code to add drag and drop reorder functionality to saved search list.
 
     //------ FOLLOWING CODE COPIED/ADAPTED FROM https://htmldom.dev/drag-and-drop-element-in-a-list/ 
 
@@ -371,8 +370,10 @@ function displaySearches(){
 
 //------ PRECEDING CODE COPIED/ADAPTED FROM https://htmldom.dev/drag-and-drop-element-in-a-list/ 
 
+//display saved searches on page load
 displaySearches();
 
+//get user input from search bar, clear the bar, and call getWeather on input
 function handleFormSubmission(){
     let city = $('.city-input').val();
     $('.city-input').val('');
@@ -381,6 +382,8 @@ function handleFormSubmission(){
     }
 }
 
+
+//attach same behavior to clicking search button or hitting enter
 $('.search-button').on("click", function (event){
     event.preventDefault();
     handleFormSubmission();
