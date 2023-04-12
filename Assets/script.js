@@ -114,6 +114,7 @@ function displayWeather(){
     $(btmRow).attr('style', 'margin: 0px;')
 
     var blankDay = 0;
+    //weatherInfo array has 8 reports per day, therefore offset variable increments index in weatherInfo by 8 every time while loop fires.
     var offset = 8;
     while(offset<40){
         blankDay++;

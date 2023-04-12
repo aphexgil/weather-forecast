@@ -53,7 +53,7 @@ h3{
 }
 
 .search-again{
-    width: 100%;
+    width: 100% !important;
     background-color: #aeaeae;
     color: #000000;
     border-radius: 5px;
