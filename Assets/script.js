@@ -38,11 +38,16 @@ async function getWeather(city){
 //displays current and upcoming weather from weatherInfo.
 function displayWeather(){
 
-    $('.spacer').attr('style', 'display:none');
+    // $('.spacer').attr('style', 'display:none');
     $('.big-col').remove();
+    $('#input-box').removeClass('width-600');
+    $('#input-box').addClass('col-12');
+    $('#input-box').addClass('col-md-3');
+    $('.back-button').css('filter', 'opacity(100)');
+    $('.back-button').css('cursor', 'pointer');
 
     var bigCol = $('<div/>',{
-        class: 'col-12 col-lg-9 big-col',
+        class: 'col-12 col-md-9 big-col',
     });
 
     var topRow = $('<div/>',{
@@ -52,7 +57,7 @@ function displayWeather(){
     var todayBox = $('<div/>',{
         class: 'col-12 border border-dark today-box'
     });
-    $(todayBox).attr('style', 'width: 97%; margin: 10px auto 10px 10px;')
+    $(todayBox).attr('style', 'width: 95%; margin: 10px auto;')
 
     var todayBoxHeadline = $('<h2/>');
 
@@ -241,6 +246,9 @@ function displaySearches(){
     let x = 0;
     let y = 0;
 
+    let w = 0;
+    let h = 0;
+
     const mouseDownHandler = function (e) {
         if(e.target.innerText=='x'){
             return;
@@ -250,6 +258,10 @@ function displaySearches(){
         const rect = draggingEle.getBoundingClientRect();
         x = e.pageX - rect.left;
         y = e.pageY - rect.top;
+
+
+        w = draggingEle.offsetWidth;
+        h = draggingEle.offsetHeight;
 
         // Attach the listeners to `document`
         document.addEventListener('mousemove', mouseMoveHandler);
@@ -269,13 +281,14 @@ function displaySearches(){
 
     const mouseMoveHandler = function(e) {
 
-        let w = draggingEle.offsetWidth;
-        let h = draggingEle.offsetHeight;
+
+        console.log(w + " " + h);
+
         // Set position for dragging element
         draggingEle.style.position = 'absolute';
-        draggingEle.style.top = `${e.pageY - y}px`;
-        draggingEle.style.left = `${e.pageX - x}px`;
-        draggingEle.style.width = `${w}px`;
+        draggingEle.style.top = `${ e.pageY - y - 4 }px`;
+        draggingEle.style.left = `${ e.pageX - x }px`;
+        draggingEle.style.width = `${ w }px`;
         
         if (!isDraggingStarted) {
             // Update the flag
@@ -333,6 +346,7 @@ function displaySearches(){
         draggingEle.style.removeProperty('top');
         draggingEle.style.removeProperty('left');
         draggingEle.style.removeProperty('position');
+        draggingEle.style.removeProperty('width');
 
         x = null;
         y = null;
@@ -383,6 +397,15 @@ function handleFormSubmission(){
     }
 }
 
+function backButton(){
+    $('.big-col').remove();
+    $('#input-box').removeClass('col-12');
+    $('#input-box').removeClass('col-md-3');
+    $('#input-box').addClass('width-600');
+    $('.back-button').css('filter', 'opacity(0)');
+    $('.back-button').css('cursor', 'default');
+}
+
 
 //attach same behavior to clicking search button or hitting enter
 $('.search-button').on("click", function (event){
@@ -394,3 +417,9 @@ $('.input-form').on("submit", function (event){
     event.preventDefault();
     handleFormSubmission();
 });
+
+$('.back-button').on("click", function (event){
+    event.preventDefault();
+    backButton();
+});
+

@@ -1,6 +1,8 @@
 header{
-    text-align: right;
-    padding: 10px 25vw 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
     background-image: linear-gradient(to right,#465ab8, #261360);
     color: white;
     margin-bottom: 5px;
@@ -9,21 +11,42 @@ header{
 footer{
     height: 200px;
 }
+
 body{
     width: 100%;
 }
+
+main{
+    margin: 0px 50px;
+}
+
 .main-row{
     margin-top: 13px;
-    width: 100%;
+    /* width: 100%; */
+}
+
+.width-600{
+    width: 600px !important;
+}
+
+.back-button{
+    height: 30px;
+    filter: opacity(0);
+}
+
+.today-box{
+    margin: 0px auto;
+    width: 90%;
 }
 
 h1{
-    font-size: xx-large;
+    font-size: 30px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 h2{
-    font-size: x-large;
+    font-size: 17px;
     font-weight: bolder;
 }
 
@@ -40,6 +63,10 @@ h3{
     padding: 5px 0px 5px 7px;
 }
 
+#input-box{
+    margin: 0px auto;
+}
+
 .search-button{
     width: 100%;
     background-color: #6991e3;
@@ -53,7 +80,7 @@ h3{
 }
 
 .search-again{
-    width: 100% !important;
+    /* width: 100% !important; */
     background-color: #aeaeae;
     color: #000000;
     border-radius: 5px;
@@ -66,6 +93,7 @@ h3{
 .saved-searches{
     border-top: 10px;
     margin-bottom: 20px;
+    /* position: relative; */
 }
 
 ul li{
@@ -79,8 +107,25 @@ ul li{
     user-select: none;
 }
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .today-box {
-        width: 97%; margin: 10px auto 10px 10px;
+        width: 97%;
+        margin: 10px auto 10px 10px;
+    }
+} */
+
+@media screen and (max-width: 767px){
+    header{
+        padding: 10px 15px;
+    }
+    main{
+        margin: 0px 10px;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .width-600{
+        width: 100% !important;
+        margin-left: 0px;
     }
 }
